@@ -20,7 +20,7 @@ The header file TestConfiguration.h has a number of #defines that may be used to
 
 These items allow us to configure different techniques for the scheduling of calls to SKNode::runAction*
 
-** ON_MAIN_QUEUE**
+**ON_MAIN_QUEUE**
 Uncommenting this causes all runAction calls to be done within a block on the main queue.  I thought this would
 eliminate my crashes however it doesn't.  It may make them less frequent, but they still happen.
 
