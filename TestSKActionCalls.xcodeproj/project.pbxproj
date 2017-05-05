@@ -7,12 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D033EC301EBCACB300D3F8EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D04281621E2653D2003C57A9 /* AppDelegate.m */; };
+		D033EC311EBCACB300D3F8EA /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = D042817E1E265604003C57A9 /* GameScene.m */; };
+		D033EC321EBCACB300D3F8EA /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D04281671E2653D2003C57A9 /* GameViewController.m */; };
+		D033EC331EBCACB300D3F8EA /* SKContainerNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D0421B3E1E3589F9007D7090 /* SKContainerNode.m */; };
+		D033EC341EBCACB300D3F8EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D042815F1E2653D2003C57A9 /* main.m */; };
+		D033EC361EBCACB300D3F8EA /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D042818D1E265F87003C57A9 /* libxml2.tbd */; };
+		D033EC381EBCACB300D3F8EA /* Main_SceneKit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D033EC2B1EBCAC8C00D3F8EA /* Main_SceneKit.storyboard */; };
+		D033EC391EBCACB300D3F8EA /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = D04281641E2653D2003C57A9 /* art.scnassets */; };
+		D033EC3A1EBCACB300D3F8EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D042816E1E2653D2003C57A9 /* LaunchScreen.storyboard */; };
+		D033EC3B1EBCACB300D3F8EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D042816C1E2653D2003C57A9 /* Assets.xcassets */; };
 		D0421B3F1E3589F9007D7090 /* SKContainerNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D0421B3E1E3589F9007D7090 /* SKContainerNode.m */; };
 		D04281601E2653D2003C57A9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D042815F1E2653D2003C57A9 /* main.m */; };
 		D04281631E2653D2003C57A9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D04281621E2653D2003C57A9 /* AppDelegate.m */; };
 		D04281651E2653D2003C57A9 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = D04281641E2653D2003C57A9 /* art.scnassets */; };
 		D04281681E2653D2003C57A9 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D04281671E2653D2003C57A9 /* GameViewController.m */; };
-		D042816B1E2653D2003C57A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D04281691E2653D2003C57A9 /* Main.storyboard */; };
+		D042816B1E2653D2003C57A9 /* Main_SpriteKit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D04281691E2653D2003C57A9 /* Main_SpriteKit.storyboard */; };
 		D042816D1E2653D2003C57A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D042816C1E2653D2003C57A9 /* Assets.xcassets */; };
 		D04281701E2653D2003C57A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D042816E1E2653D2003C57A9 /* LaunchScreen.storyboard */; };
 		D042817F1E265604003C57A9 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = D042817E1E265604003C57A9 /* GameScene.m */; };
@@ -20,16 +30,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D033EC2C1EBCAC8C00D3F8EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_SceneKit.storyboard; sourceTree = "<group>"; };
+		D033EC401EBCACB300D3F8EA /* TestSceneWithOverlayKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestSceneWithOverlayKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D033EC411EBCACB300D3F8EA /* TestSKActionCalls copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "TestSKActionCalls copy-Info.plist"; path = "/Users/peter/Documents/Programming/BugReporting/TestSKActionCalls/TestSKActionCalls copy-Info.plist"; sourceTree = "<absolute>"; };
+		D033EC421EBCB1F300D3F8EA /* TestConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestConfiguration.h; sourceTree = "<group>"; };
 		D0421B3D1E3589F9007D7090 /* SKContainerNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKContainerNode.h; sourceTree = "<group>"; };
 		D0421B3E1E3589F9007D7090 /* SKContainerNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKContainerNode.m; sourceTree = "<group>"; };
-		D042815B1E2653D2003C57A9 /* TestSKActionCalls.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestSKActionCalls.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D042815B1E2653D2003C57A9 /* TestSpriteKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestSpriteKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D042815F1E2653D2003C57A9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D04281611E2653D2003C57A9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D04281621E2653D2003C57A9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D04281641E2653D2003C57A9 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		D04281661E2653D2003C57A9 /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
 		D04281671E2653D2003C57A9 /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
-		D042816A1E2653D2003C57A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D042816A1E2653D2003C57A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_SpriteKit.storyboard; sourceTree = "<group>"; };
 		D042816C1E2653D2003C57A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D042816F1E2653D2003C57A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D04281711E2653D2003C57A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -40,6 +54,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D033EC351EBCACB300D3F8EA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D033EC361EBCACB300D3F8EA /* libxml2.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D04281581E2653D2003C57A9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -58,13 +80,15 @@
 				D042815D1E2653D2003C57A9 /* TestSKActionCalls */,
 				D042815C1E2653D2003C57A9 /* Products */,
 				D042818C1E265F87003C57A9 /* Frameworks */,
+				D033EC411EBCACB300D3F8EA /* TestSKActionCalls copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
 		D042815C1E2653D2003C57A9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D042815B1E2653D2003C57A9 /* TestSKActionCalls.app */,
+				D042815B1E2653D2003C57A9 /* TestSpriteKit.app */,
+				D033EC401EBCACB300D3F8EA /* TestSceneWithOverlayKit.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -72,6 +96,7 @@
 		D042815D1E2653D2003C57A9 /* TestSKActionCalls */ = {
 			isa = PBXGroup;
 			children = (
+				D033EC421EBCB1F300D3F8EA /* TestConfiguration.h */,
 				D04281611E2653D2003C57A9 /* AppDelegate.h */,
 				D04281621E2653D2003C57A9 /* AppDelegate.m */,
 				D04281641E2653D2003C57A9 /* art.scnassets */,
@@ -81,7 +106,8 @@
 				D042817E1E265604003C57A9 /* GameScene.m */,
 				D0421B3D1E3589F9007D7090 /* SKContainerNode.h */,
 				D0421B3E1E3589F9007D7090 /* SKContainerNode.m */,
-				D04281691E2653D2003C57A9 /* Main.storyboard */,
+				D04281691E2653D2003C57A9 /* Main_SpriteKit.storyboard */,
+				D033EC2B1EBCAC8C00D3F8EA /* Main_SceneKit.storyboard */,
 				D042816C1E2653D2003C57A9 /* Assets.xcassets */,
 				D042816E1E2653D2003C57A9 /* LaunchScreen.storyboard */,
 				D04281711E2653D2003C57A9 /* Info.plist */,
@@ -109,9 +135,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D042815A1E2653D2003C57A9 /* TestSKActionCalls */ = {
+		D033EC2E1EBCACB300D3F8EA /* TestSceneWithOverlayKit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D04281741E2653D2003C57A9 /* Build configuration list for PBXNativeTarget "TestSKActionCalls" */;
+			buildConfigurationList = D033EC3D1EBCACB300D3F8EA /* Build configuration list for PBXNativeTarget "TestSceneWithOverlayKit" */;
+			buildPhases = (
+				D033EC2F1EBCACB300D3F8EA /* Sources */,
+				D033EC351EBCACB300D3F8EA /* Frameworks */,
+				D033EC371EBCACB300D3F8EA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TestSceneWithOverlayKit;
+			productName = TestTextureUpdates;
+			productReference = D033EC401EBCACB300D3F8EA /* TestSceneWithOverlayKit.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D042815A1E2653D2003C57A9 /* TestSpriteKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D04281741E2653D2003C57A9 /* Build configuration list for PBXNativeTarget "TestSpriteKit" */;
 			buildPhases = (
 				D04281571E2653D2003C57A9 /* Sources */,
 				D04281581E2653D2003C57A9 /* Frameworks */,
@@ -121,9 +164,9 @@
 			);
 			dependencies = (
 			);
-			name = TestSKActionCalls;
+			name = TestSpriteKit;
 			productName = TestTextureUpdates;
-			productReference = D042815B1E2653D2003C57A9 /* TestSKActionCalls.app */;
+			productReference = D042815B1E2653D2003C57A9 /* TestSpriteKit.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -135,6 +178,9 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = PKCLsoft;
 				TargetAttributes = {
+					D033EC2E1EBCACB300D3F8EA = {
+						DevelopmentTeam = YTQG85D588;
+					};
 					D042815A1E2653D2003C57A9 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = YTQG85D588;
@@ -155,12 +201,24 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D042815A1E2653D2003C57A9 /* TestSKActionCalls */,
+				D042815A1E2653D2003C57A9 /* TestSpriteKit */,
+				D033EC2E1EBCACB300D3F8EA /* TestSceneWithOverlayKit */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D033EC371EBCACB300D3F8EA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D033EC381EBCACB300D3F8EA /* Main_SceneKit.storyboard in Resources */,
+				D033EC391EBCACB300D3F8EA /* art.scnassets in Resources */,
+				D033EC3A1EBCACB300D3F8EA /* LaunchScreen.storyboard in Resources */,
+				D033EC3B1EBCACB300D3F8EA /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D04281591E2653D2003C57A9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -168,13 +226,25 @@
 				D04281651E2653D2003C57A9 /* art.scnassets in Resources */,
 				D04281701E2653D2003C57A9 /* LaunchScreen.storyboard in Resources */,
 				D042816D1E2653D2003C57A9 /* Assets.xcassets in Resources */,
-				D042816B1E2653D2003C57A9 /* Main.storyboard in Resources */,
+				D042816B1E2653D2003C57A9 /* Main_SpriteKit.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D033EC2F1EBCACB300D3F8EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D033EC301EBCACB300D3F8EA /* AppDelegate.m in Sources */,
+				D033EC311EBCACB300D3F8EA /* GameScene.m in Sources */,
+				D033EC321EBCACB300D3F8EA /* GameViewController.m in Sources */,
+				D033EC331EBCACB300D3F8EA /* SKContainerNode.m in Sources */,
+				D033EC341EBCACB300D3F8EA /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D04281571E2653D2003C57A9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -190,12 +260,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D04281691E2653D2003C57A9 /* Main.storyboard */ = {
+		D033EC2B1EBCAC8C00D3F8EA /* Main_SceneKit.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D033EC2C1EBCAC8C00D3F8EA /* Base */,
+			);
+			name = Main_SceneKit.storyboard;
+			sourceTree = "<group>";
+		};
+		D04281691E2653D2003C57A9 /* Main_SpriteKit.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				D042816A1E2653D2003C57A9 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Main_SpriteKit.storyboard;
 			sourceTree = "<group>";
 		};
 		D042816E1E2653D2003C57A9 /* LaunchScreen.storyboard */ = {
@@ -209,6 +287,39 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		D033EC3E1EBCACB300D3F8EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = YTQG85D588;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					"SPRITEKIT_AS_OVERLAY=1",
+				);
+				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2";
+				INFOPLIST_FILE = "TestSKActionCalls copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pkclsoft.TestSKActionCalls;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D033EC3F1EBCACB300D3F8EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = YTQG85D588;
+				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2";
+				INFOPLIST_FILE = "TestSKActionCalls copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pkclsoft.TestSKActionCalls;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		D04281721E2653D2003C57A9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -330,6 +441,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D033EC3D1EBCACB300D3F8EA /* Build configuration list for PBXNativeTarget "TestSceneWithOverlayKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D033EC3E1EBCACB300D3F8EA /* Debug */,
+				D033EC3F1EBCACB300D3F8EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D04281561E2653D2003C57A9 /* Build configuration list for PBXProject "TestSKActionCalls" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -339,7 +459,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D04281741E2653D2003C57A9 /* Build configuration list for PBXNativeTarget "TestSKActionCalls" */ = {
+		D04281741E2653D2003C57A9 /* Build configuration list for PBXNativeTarget "TestSpriteKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D04281751E2653D2003C57A9 /* Debug */,

@@ -4,7 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>TestSKActionCalls.xcscheme</key>
+		<key>TestSKActionCallsSceneKitOverlay.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>TestSKActionCallsSpriteKit.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,6 +17,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>D033EC2E1EBCACB300D3F8EA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>D042815A1E2653D2003C57A9</key>
 		<dict>
 			<key>primary</key>

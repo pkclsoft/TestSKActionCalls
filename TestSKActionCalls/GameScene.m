@@ -1,6 +1,5 @@
 #import "GameScene.h"
-
-#define USE_CONTAINER_NODE 1
+#import "TestConfiguration.h"
 
 #ifdef USE_CONTAINER_NODE
 #import "SKContainerNode.h"
@@ -8,7 +7,10 @@
 
 @interface GameScene()
 
+#ifdef INCLUDE_LABEL
 @property (nonatomic, retain) SKLabelNode *normalLabel;
+#endif
+
 @property (nonatomic, retain) SKSpriteNode *sprite;
 @property (nonatomic, assign) float newAngle;
 
@@ -38,9 +40,11 @@
         self.containerNode = [SKNode node];
 #endif
 
+#ifdef INCLUDE_LABEL
         self.normalLabel = [SKLabelNode labelNodeWithText:@"normalLabel"];
         self.normalLabel.position = CGPointMake(0.0, size.height/4.0);
         [self.containerNode addChild:self.normalLabel];
+#endif
 
         self.sprite = [SKSpriteNode spriteNodeWithColor:[UIColor yellowColor] size:CGSizeMake(50.0, 50.0)];
         self.sprite.position = CGPointMake(0.0, size.height/2.0 - 60.0);
@@ -51,15 +55,23 @@
 
         [self addChild:self.containerNode];
 
+#ifdef INCLUDE_LABEL
         // update the label every 100ms.
         //
         [self performSelector:@selector(updateLabels) withObject:nil afterDelay:0.1];
+#endif
 
         // If the update is to be done every frame, don't schedule this way.
         //
-#ifndef FROM_UPDATE_CALLBACK
+#if !FROM_UPDATE_SCENEKIT_RENDERER_CALLBACK && !FROM_UPDATE_CALLBACK
         // update the sprite far more often.
+#ifndef SCHEDULE_MAIN_QUEUE
         [self performSelector:@selector(updateSprite) withObject:nil afterDelay:0.01];
+#else
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self updateSprite];
+        });
+#endif
 #endif
     }
     
@@ -69,24 +81,6 @@
 + (GameScene*) gameSceneWithSize:(CGSize)size {
     return [[GameScene alloc] initWithSize:size];
 }
-
-// Uncommenting this causes all runAction calls to be done within a block on the main queue.  I thought this would
-// eliminate my crashes however it doesn't.  I may make them less frequent, but they still happen.
-//
-#define ON_MAIN_QUEUE
-
-// I had thought that by deferring all runAction calls to happen from within the update: callback, the crash would
-// go away however this proves not to be the case.  It still happens.
-// Uncomment this to try this method.  Ensure that ON_MAIN_QUEUE is commented out though.
-//#define FROM_UPDATE_CALLBACK
-
-// Only enable one of the following at a time, to demonstrate the differences between
-// the three SKNode::runAction methods.
-//
-#define RUN_SOLO
-//#define RUN_WITH_KEY
-//#define RUN_WITH_COMPLETION
-//#define RUN_WITH_MANUAL_REMOVAL
 
 - (void) updateSprite {
     const float duration = 1.0/30.0;
@@ -188,15 +182,22 @@
     });
 #endif
 
-#ifndef FROM_UPDATE_CALLBACK
+#if !FROM_UPDATE_SCENEKIT_RENDERER_CALLBACK && !FROM_UPDATE_CALLBACK
     // update the sprite every 1ms.   this is artificially frequent so that we can be sure that we attampt to call
     // runAction before the previous instance of the action can complete.  I believe that the crashes occur because there
     // is a problem inside SKNode that doesn't handle this situation reliably.
     //
+#ifndef SCHEDULE_MAIN_QUEUE
     [self performSelector:@selector(updateSprite) withObject:nil afterDelay:0.001];
+#else
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.001 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self updateSprite];
+    });
+#endif
 #endif
 }
 
+#ifdef INCLUDE_LABEL
 - (void) updateLabels {
     NSString *labelText = [NSString stringWithFormat:@"count: %lu", (unsigned long)spriteUpdateCounter];
     self.normalLabel.text = labelText;
@@ -205,8 +206,9 @@
 
     [self performSelector:@selector(updateLabels) withObject:nil afterDelay:0.01];
 }
+#endif
 
-#ifdef FROM_UPDATE_CALLBACK
+#if FROM_UPDATE_CALLBACK && !FROM_UPDATE_SCENEKIT_RENDERER_CALLBACK
 -(void) update:(NSTimeInterval)currentTime {
     // so this will update the sprite actions once per frame which isn't as frequent, but it ensures that the actions are not
     // added/removed outside the update callback.

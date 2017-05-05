@@ -8,6 +8,13 @@
 
 #import "GameViewController.h"
 #import "GameScene.h"
+#import "TestConfiguration.h"
+
+@interface  GameViewController()
+
+@property (nonatomic, retain) GameScene *skScene;
+
+@end
 
 @implementation GameViewController
 
@@ -15,6 +22,7 @@
 {
     [super viewDidLoad];
 
+#ifdef SPRITEKIT_AS_OVERLAY
     // create a new scene
     SCNScene *scene = [SCNScene sceneNamed:@"art.scnassets/ship.scn"];
 
@@ -52,7 +60,9 @@
     // set the scene to the view
     scnView.scene = scene;
 
-    scnView.overlaySKScene = [GameScene gameSceneWithSize:scnView.bounds.size];
+    self.skScene = [GameScene gameSceneWithSize:scnView.bounds.size];
+
+    scnView.overlaySKScene = self.skScene;
     
     // allows the user to manipulate the camera
     scnView.allowsCameraControl = YES;
@@ -62,6 +72,10 @@
 
     // configure the view
     scnView.backgroundColor = [UIColor blackColor];
+
+#ifdef FROM_UPDATE_SCENEKIT_RENDERER_CALLBACK
+    scnView.delegate = self;
+#endif
     
     // add a tap gesture recognizer
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
@@ -69,6 +83,23 @@
     [gestureRecognizers addObject:tapGesture];
     [gestureRecognizers addObjectsFromArray:scnView.gestureRecognizers];
     scnView.gestureRecognizers = gestureRecognizers;
+#else
+
+    SKView *skView = (SKView*)self.view;
+    skView.showsFPS = YES;
+    skView.showsNodeCount = YES;
+    skView.ignoresSiblingOrder = YES;
+
+    self.skScene = [GameScene gameSceneWithSize:skView.bounds.size];
+
+    [skView presentScene:self.skScene];
+#endif
+}
+
+- (void) renderer:(id<SCNSceneRenderer>)renderer updateAtTime:(NSTimeInterval)time {
+#ifdef FROM_UPDATE_SCENEKIT_RENDERER_CALLBACK
+    [self.skScene updateSprite];
+#endif
 }
 
 - (void) handleTap:(UIGestureRecognizer*)gestureRecognize

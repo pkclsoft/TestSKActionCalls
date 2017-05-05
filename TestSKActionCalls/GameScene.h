@@ -6,4 +6,6 @@
 
 + (GameScene*) gameSceneWithSize:(CGSize)size;
 
+- (void) updateSprite;
+
 @end
