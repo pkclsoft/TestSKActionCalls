@@ -2,54 +2,76 @@
 
 This project was originally developed as part of a technical request to Apple Developer Support, to demonstrate a problem I had with some spritekit animations.
 
-The project contains the complete solution as suggested by the Apple engineer (thanks!) with some code-tidyup on my part to try and formalise the solution.
+The problem I was/am having is that calls to SKNode::runAction* can intermittently cause the app to crash.
 
-Essentially, I had attributed text labels being updated on the fly and because of the way they work, doing this outside the rendered thread could cause crashes.
+It seems that there are problems when using a SpriteKit scene object as an overlay node within a SceneKit app.  
 
-The Apple engineer showed me that I needed to defer the actual updates to the renderer thread in it's update callback.
+Adding and removing actions to/from a SKNode in such an environment can cause problems because the renderer is multi-threaded, and the internal data structures don't seem to be thread safe.
 
-This then highlighted the need to be able to manage this, and in a very long conversation with Apple, I decided to do so with a manager class which is used as a container for any nodes needing attention during the update callback.
+So this project attempts to identify a work around for the problem so that I can get my game finished whilst Apple engineers find the root cause of the problem and address it in some future version of iOS.
 
-I then found problems with my implementation whereby nodes needed to "know" when they are no longer in the node tree so that they could automatically remove themselves from the new manager (and thus, not cause a crash in the update thread).
+In this project there are two targets, one that has a pure SpriteKit SKView as the root view of the app and another that uses an SCNView with an SKScene set to be it's overlaySKScene.
 
-The Apple engineer suggested that I use the SKNode.removeFromParent message to let a node know when it is no longer part of the node tree however this does not always work, as the internal implementation does not consistently release objects when this is done.
+In both cases there will be a single yellow square that should rotate (perhaps spasmodically) as it is updated by SKActions.  The reason the rotation may not be smooth is that I deliberately set the duration of the animations, and the frequency of their initiation such that new initiations will typically occur before the previous one has finished.
 
-I ended up enhancing this project to demonstrate the problems with removeFromParent (and the other removeFromParent like methods), and this repo is the result.
+The header file TestConfiguration.h has a number of #defines that may be used to play with the test:
 
-I will be submitting this project to Apple as a bug report in an attempt to get a consistent, and leak-free implementation of removeFromParent.
+**Scheduling Updates**
 
-**INSTRUCTIONS:**
+These items allow us to configure different techniques for the scheduling of calls to SKNode::runAction*
 
-This project is a stock standard SceneKit app as created by Xcode 8, with the alterations as outlined above.
+** ON_MAIN_QUEUE**
+Uncommenting this causes all runAction calls to be done within a block on the main queue.  I thought this would
+eliminate my crashes however it doesn't.  It may make them less frequent, but they still happen.
 
-Within the GameScene class, there are a number of #define's that can be used to demonstrate the behaviours I've mentioned:
+**SCHEDULE_MAIN_QUEUE**
+Uncommenting this causes the update of the sprite to happen via blocks on the main queue, so that even less is happening
+elsewhere.
 
-    #define TEST_REMOVAL
+**FROM_UPDATE_CALLBACK**
+I had thought that by deferring all runAction calls to happen from within the SKNode::update: callback, the crash would
+go away however this proves not to be the case.  It still happens.
 
-If uncommented, then the project will update the label 100 times before removing it from the node tree, at which time, a dealloc call should occur (traced).
+Uncomment this to try this method.  Ensure that ON_MAIN_QUEUE is commented out though.
 
-In addition to this:
+The idea here is to ensure that the SKActions are being scheduled from within the SceneKit renderer thread via the renderer callback.
 
-    #define TEST_VIA_REMOVE_FROM_PARENT
+**FROM_UPDATE_SCENEKIT_RENDERER_CALLBACK**
+Uncomment this to try this method.  Ensure that ON_MAIN_QUEUE and FROM_UPDATE_CALLBACK
+are both commented out though.
 
-Will cause the removal to be done via a call to removeFromParent.  This will not cause a call to dealloc, resulting in a leak.
 
-    #define TEST_VIA_REMOVE_ALL_CHILDREN
+**runAction Choice**
 
-Will cause the removal to be done via a call to removeAllChildren.  This does call dealloc.
+These items allow us to configure which of the SKNode::runAction* method is used.  Mainly so that we can test if any of
+them behave more reliably.
 
-    #define TEST_VIA_REMOVE_CHILDREN
+Only enable one of the following at a time, to demonstrate the differences between
+the three SKNode::runAction methods.
 
-Will cause the removal to be done via a call to removeChildrenInArray.  This does call dealloc.
+**RUN_SOLO**
+Calls SKNode:runAction:
 
- 
+**RUN_WITH_KEY**
+Calls SKNode::runAction:withKey:
 
-**ContainerNode**
+**RUN_WITH_COMPLETION**
+Calls SKNode::runAction:completion:
 
-Finally, as a workaround for the leak in removeFromParent, I created a node called ContainerNode that is a direct subclass of SKNode.  It overrides each of the removal messages so that all work in a consistent manner.
+**RUN_WITH_MANUAL_REMOVAL**
+Explicitly calls SKNode:removeActionForKey: followed by SKNode::runAction:withKey:
 
-This can be demonstrated by uncommenting:
 
-    //#define USE_CONTAINER_NODE 1
+**Miscellaneous**
 
-With this done, all of the above tests will result in a dealloc, showing that the leak has been corrected.
+These items can be used to alter how much is actually being done each update.
+
+
+**INCLUDE_LABEL**
+Uncomment if you want an SKLabelNode on screen to tell you how many updates have been done.  This may exacerbate the
+problem however.
+
+**USE_CONTAINER_NODE**
+The SKScene (GameScene) uses the SKContainerNode to 'contain' any visible SKodes if this is uncommented.  This class
+provides a more robust mechanism for removing nodes, as demonstrated for bug #30630031
+

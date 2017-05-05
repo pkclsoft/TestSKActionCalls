@@ -16,7 +16,7 @@
  ***********/
 
 // Uncommenting this causes all runAction calls to be done within a block on the main queue.  I thought this would
-// eliminate my crashes however it doesn't.  I may make them less frequent, but they still happen.
+// eliminate my crashes however it doesn't.  It may make them less frequent, but they still happen.
 //
 //#define ON_MAIN_QUEUE 1
 
@@ -33,7 +33,7 @@
 // My last ditch attempt to fix this problem (for now).  The idea here is to ensure that the SKActions are being
 // scheduled from within the SceneKit renderer thread via the renderer callback.
 //
-// Uncomment this to try this method.  Ensure that GameScene.ON_MAIN_QUEUE and GameScene.FROM_UPDATE_CALLBACK
+// Uncomment this to try this method.  Ensure that ON_MAIN_QUEUE and FROM_UPDATE_CALLBACK
 // are both commented out though.
 //
 #define FROM_UPDATE_SCENEKIT_RENDERER_CALLBACK 1
